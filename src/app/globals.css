@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/* ── Calling-card palette: white on black, vivid green accent ──────── */
+:root {
+  --paper: #000000; /* pure black */
+  --paper-raised: #0b0d0b;
+  --ink: #f5f6f5; /* near-white primary text */
+  --ink-soft: #b8bdb7; /* secondary text */
+  --ink-faint: #76807a; /* tertiary / meta labels */
+  --line: rgba(245, 246, 245, 0.1); /* hairline rules */
+  --accent: #3fc95a; /* vivid green */
+
+  /* Neutral grotesque (display + text) + monospace (labels). */
+  --stack-display: var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
+  --stack-text: var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --font-display: var(--stack-display);
+  --font-sans: var(--stack-text);
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+/* ── Link underline that wipes in from the left ────────────────────── */
+.link-wipe {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.35s cubic-bezier(0.2, 0.6, 0.2, 1),
+    color 0.35s ease;
+}
+.link-wipe:hover {
+  background-size: 100% 1px;
+  color: var(--accent);
+}
+
+/* ── Staggered page-load reveal ────────────────────────────────────── */
+@keyframes card-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.7rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.reveal {
+  opacity: 0;
+  animation: card-reveal 0.9s cubic-bezier(0.16, 0.8, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+    opacity: 1;
+  }
+}
