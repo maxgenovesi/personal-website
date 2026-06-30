@@ -26,6 +26,8 @@
   --font-display: var(--stack-display);
   --font-sans: var(--stack-text);
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-name: var(--font-in-a-rush), var(--stack-display);
+  --font-columns: var(--font-jetbrains), ui-monospace, monospace;
 }
 
 html {

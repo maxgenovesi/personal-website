@@ -6,9 +6,8 @@ export const siteConfig = {
   description: "Personal website and portfolio of Max Genovesi.",
   url: "https://genovesi.us",
   contact: {
-    // TODO: replace with your real number.
-    phone: "+1 (555) 123-4567",
-    phoneHref: "tel:+15551234567",
+    phone: "+1 (914) 334-8110",
+    phoneHref: "tel:+19143348110",
     email: "max@genovesi.us",
     linkedin: "https://www.linkedin.com/in/maxgenovesi",
     github: "https://github.com/maxgenovesi",
