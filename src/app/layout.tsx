@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { siteConfig } from "@/lib/config";
 import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,9 +49,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable} ${inARush.variable} h-full antialiased`}
     >
       <body className="min-h-full font-sans">
-        <div className="flex min-h-screen flex-col px-7 py-12 sm:px-12 sm:py-16 lg:px-20">
+        <div className="flex min-h-screen flex-col px-5 py-5 sm:px-6 sm:py-6 lg:px-8">
           <SiteHeader />
           {children}
+          <SiteFooter />
         </div>
       </body>
     </html>

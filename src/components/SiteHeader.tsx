@@ -1,83 +1,55 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
-import { projects } from "@/data/projects";
-import { aboutItems } from "@/data/about";
-import { now } from "@/data/now";
-import Column from "@/components/Column";
 
-const item =
-  "w-fit text-[1.05rem] leading-relaxed text-white transition-opacity duration-200 hover:opacity-70";
+// Small uppercase mono nav link, matching the reference masthead. On hover the
+// colors invert: black text on a white background box.
+const navLink =
+  "w-fit px-1.5 py-0.5 font-semibold text-white transition-colors duration-150 hover:bg-white hover:text-black";
 
-// Persistent masthead shown on every page. The name links home; each column
-// title reveals its sub-items on hover.
+// Persistent masthead shown on every page, modeled on a compact studio header:
+// the name at the far left, two stacked link groups in the middle, and a
+// right-aligned Resume/CV link at the far edge. No dropdowns — every label is a
+// plain link.
 export default function SiteHeader() {
   return (
-    <header className="reveal flex flex-wrap items-center justify-between gap-x-10 gap-y-12">
+    <header className="reveal flex flex-wrap items-start justify-between gap-x-8 gap-y-8 font-columns text-xs uppercase tracking-[0.18em] sm:text-sm">
       <Link
         href="/"
-        className="font-name text-5xl font-bold leading-[0.95] tracking-[-0.03em] text-white transition-opacity duration-200 hover:opacity-80 sm:text-6xl lg:text-5xl"
+        className="rainbow-hover font-name text-[2.4rem] font-bold normal-case leading-none tracking-[-0.02em] text-white sm:text-5xl"
       >
         {siteConfig.name}
       </Link>
 
-      {/* Hover a title to reveal its subsection */}
-      <div className="flex flex-1 items-start justify-end gap-x-16 pr-16 sm:gap-x-24 sm:pr-32 lg:pr-56">
-        {/* Contact */}
-        <Column label="Contact">
-          <a href={siteConfig.contact.phoneHref} className={item}>
-            {siteConfig.contact.phone}
-          </a>
-          <a href={`mailto:${siteConfig.contact.email}`} className={item}>
-            {siteConfig.contact.email}
-          </a>
-          <a
-            href={siteConfig.contact.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={item}
-          >
-            LinkedIn ↗
-          </a>
-          <a
-            href={siteConfig.contact.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={item}
-          >
-            GitHub ↗
-          </a>
-        </Column>
-
-        {/* Projects */}
-        <Column label="Projects" href="/projects">
-          {projects.map((project) => (
-            <Link key={project.slug} href={`/projects/${project.slug}`} className={item}>
-              {project.title}
-            </Link>
-          ))}
-        </Column>
-
-        {/* About */}
-        <Column label="About" href="/about">
-          {aboutItems.map((entry) => (
-            <Link key={entry.slug} href={`/about/${entry.slug}`} className={item}>
-              {entry.title}
-            </Link>
-          ))}
-        </Column>
-
-        {/* Now */}
-        <Column label="Now" href="/now">
-          {now.items.map((line) => (
-            <p key={line} className="text-[1.05rem] leading-relaxed text-white">
-              {line}
-            </p>
-          ))}
-          <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white opacity-70">
-            Updated {now.updated}
-          </p>
-        </Column>
+      {/* Contact / Projects */}
+      <div className="flex flex-col gap-1">
+        <Link href="/contact" className={navLink}>
+          Contact
+        </Link>
+        <Link href="/projects" className={navLink}>
+          Projects
+        </Link>
       </div>
+
+      {/* About / Now */}
+      <div className="flex flex-col gap-1">
+        <Link href="/about" className={navLink}>
+          About
+        </Link>
+        <Link href="/now" className={navLink}>
+          Now
+        </Link>
+      </div>
+
+      {/* Resume / CV — two right-aligned lines, matching the column height */}
+      <a
+        href={siteConfig.resume}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${navLink} flex flex-col items-start gap-1 text-left`}
+      >
+        <span>Click here to view</span>
+        <span>my Resume/CV ↗</span>
+      </a>
     </header>
   );
 }

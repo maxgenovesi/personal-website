@@ -60,6 +60,39 @@ body {
   color: var(--accent);
 }
 
+/* ── Name: fast rainbow cycle on hover ─────────────────────────────── */
+@keyframes rainbow-cycle {
+  0% {
+    color: #ff3b3b;
+  }
+  17% {
+    color: #ff9f1c;
+  }
+  33% {
+    color: #ffe600;
+  }
+  50% {
+    color: #3fc95a;
+  }
+  67% {
+    color: #2e90ff;
+  }
+  83% {
+    color: #b14bff;
+  }
+  100% {
+    color: #ff3b3b;
+  }
+}
+.rainbow-hover:hover {
+  animation: rainbow-cycle 0.5s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rainbow-hover:hover {
+    animation: none;
+  }
+}
+
 /* ── Staggered page-load reveal ────────────────────────────────────── */
 @keyframes card-reveal {
   from {
